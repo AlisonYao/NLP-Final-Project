@@ -18,3 +18,10 @@ The dataset is from this compitition: https://tianchi.aliyun.com/competition/ent
 
 ### Baseline
 Baseline is provided by the data providers: https://github.com/ZhuiyiTechnology/nl2sql_baseline
+
+### Improvement
+
+Champion Model: https://tianchi.aliyun.com/forum/postDetail?spm=5176.12586969.1002.6.694d1ca2X5AViB&postId=78781
+
+Pretrained BERT Embeddings: https://github.com/ymcui/Chinese-BERT-wwm
+
