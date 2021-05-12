@@ -42,18 +42,27 @@ import matplotlib.pyplot as plt
 
 
 #############################################
-# counts & basic statistics
+# SQL counts & basic statistics
 #############################################
-def counter(path):
-    selectCountDict, condsCountDict = defaultdict(int), defaultdict(int)
+def SQLcounter(path):
+    selectCountDict, condsCountDict, cond_conn_opCountDict = defaultdict(int), defaultdict(int), defaultdict(int)
     with open(path, 'r') as load_f:
         for line in load_f:
             line = json.loads(line) # convert to dict
             sql = line['sql']
-            # print(sql, len(sql['sel']), len(sql['conds']))
             selectCountDict[len(sql['sel'])] += 1
             condsCountDict[len(sql['conds'])] += 1
-    return selectCountDict, condsCountDict
+            cond_conn_opCountDict[sql['cond_conn_op']] += 1
+    return selectCountDict, condsCountDict, cond_conn_opCountDict
+
+def TABLEcounter(path):
+    columnCountDict = defaultdict(int)
+    with open(path, 'r') as load_f:
+        for line in load_f:
+            line = json.loads(line) # convert to dict
+            header = line['header']
+            columnCountDict[len(header)] += 1
+    return columnCountDict
 
 def visulization(d):
     labels, frequencies = [], []
@@ -67,8 +76,11 @@ def visulization(d):
     plt.show() 
 
 
-selectCountDict, condsCountDict = counter("TableQA/test/test_complete.json")
+selectCountDict, condsCountDict, cond_conn_opCountDict = SQLcounter("TableQA/train/train.json")
 print('#selects:', selectCountDict)
 print('#where conditions:', condsCountDict)
-visulization(selectCountDict)
+print('#cond_conn_opCountDict:', cond_conn_opCountDict)
+# visulization(selectCountDict)
+columnCountDict = TABLEcounter('TableQA/train/train.tables.json')
+print('#columns in a table:', columnCountDict)
 print('DONE')

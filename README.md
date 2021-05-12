@@ -12,9 +12,11 @@ GitHub: https://github.com/ZhuiyiTechnology/TableQA
 
 Paper: https://arxiv.org/abs/2006.06434
 
-The dataset is from this compitition: https://tianchi.aliyun.com/competition/entrance/231716/introduction
+Compitition: https://tianchi.aliyun.com/competition/entrance/231716/introduction
 
 ## Implementation
+
+https://github.com/BaeSeulki/NL2LF/blob/master/README.md
 
 ### Baseline
 Baseline is provided by the data providers: https://github.com/ZhuiyiTechnology/nl2sql_baseline
