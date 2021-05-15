@@ -45,7 +45,7 @@ import matplotlib.pyplot as plt
 # SQL counts & basic statistics
 #############################################
 def SQLcounter(path):
-    selectCountDict, condsCountDict, cond_conn_opCountDict = defaultdict(int), defaultdict(int), defaultdict(int)
+    selectCountDict, condsCountDict, cond_conn_opCountDict, aggCountDict, condsCountDict2, selectColumnDict, whereColumnDict = defaultdict(int), defaultdict(int), defaultdict(int), defaultdict(int), defaultdict(int), defaultdict(int), defaultdict(int)
     with open(path, 'r') as load_f:
         for line in load_f:
             line = json.loads(line) # convert to dict
@@ -53,7 +53,17 @@ def SQLcounter(path):
             selectCountDict[len(sql['sel'])] += 1
             condsCountDict[len(sql['conds'])] += 1
             cond_conn_opCountDict[sql['cond_conn_op']] += 1
-    return selectCountDict, condsCountDict, cond_conn_opCountDict
+            aggs = sql['agg']
+            for agg in aggs:
+                aggCountDict[agg] += 1
+            conds = sql['conds']
+            for cond in conds:
+                condsCountDict2[cond[1]] += 1
+                whereColumnDict[cond[0]] += 1
+            sel = sql['sel']
+            for i in sel:
+                selectColumnDict[i] += 1
+    return selectCountDict, condsCountDict, cond_conn_opCountDict, aggCountDict, condsCountDict2, selectColumnDict, whereColumnDict
 
 def TABLEcounter(path):
     columnCountDict = defaultdict(int)
@@ -76,11 +86,15 @@ def visulization(d):
     plt.show() 
 
 
-selectCountDict, condsCountDict, cond_conn_opCountDict = SQLcounter("TableQA/train/train.json")
+selectCountDict, condsCountDict, cond_conn_opCountDict, aggCountDict, condsCountDict, selectColumnDict, whereColumnDict = SQLcounter("TableQA/final/final_complete.json")
 print('#selects:', selectCountDict)
 print('#where conditions:', condsCountDict)
-print('#cond_conn_opCountDict:', cond_conn_opCountDict)
+print('#and/or/null:', cond_conn_opCountDict)
+print('#agg:', aggCountDict)
+print('#><==!=', condsCountDict)
+print('#selectColumns:', selectColumnDict)
+print('#whereColumns:', whereColumnDict)
 # visulization(selectCountDict)
-columnCountDict = TABLEcounter('TableQA/train/train.tables.json')
-print('#columns in a table:', columnCountDict)
+# columnCountDict = TABLEcounter('TableQA/final/final.tables.json')
+# print('#columns in a table:', columnCountDict)
 print('DONE')

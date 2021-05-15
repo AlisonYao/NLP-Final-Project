@@ -25,8 +25,9 @@ Baseline is provided by the data providers: https://github.com/ZhuiyiTechnology/
 
 No.1 Model: https://tianchi.aliyun.com/forum/postDetail?spm=5176.12586969.1002.6.694d1ca2X5AViB&postId=78781
 
-Pretrained BERT Embeddings: https://github.com/ymcui/Chinese-BERT-wwm
+PPT: https://github.com/nudtnlp/tianchi-nl2sql-top1/blob/master/天池NL2SQL冠军方案.pdf
 
+Pretrained BERT Embeddings: https://github.com/ymcui/Chinese-BERT-wwm
 
 No.3 Model: https://github.com/lifloveyou/tianchi_nl2sql
 
