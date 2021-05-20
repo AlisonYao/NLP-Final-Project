@@ -74,6 +74,34 @@ def TABLEcounter(path):
             columnCountDict[len(header)] += 1
     return columnCountDict
 
+def baseline(path):
+    with open(path, 'r') as load_f:
+        Count, selCount, aggCount, opCount, wheCount = 0, 0, 0, 0, 0
+        for line in load_f:
+            Count += 1
+            line = json.loads(line) # convert to dict
+            sql = line['sql']
+            # S-col
+            sel = sql['sel']
+            if sel == [1] * len(sel):
+                selCount += 1
+            # S-agg
+            aggs = sql['agg']
+            if aggs == [0] * len(aggs):
+                aggCount += 1
+            # W-col & W-col-op
+            conds = sql['conds']
+            operators, columns = [], []
+            for cond in conds:
+                operators.append(cond[1])
+                columns.append(cond[0])
+            if operators == [0] * len(operators):
+                opCount += 1
+            if columns == [1] * len(columns):
+                wheCount += 1
+            
+    return selCount/Count , aggCount/Count, wheCount/Count, opCount/Count
+
 def visulization(d):
     labels, frequencies = [], []
     for label_frequency in d.items():
@@ -97,4 +125,5 @@ print('#whereColumns:', whereColumnDict)
 # visulization(selectCountDict)
 # columnCountDict = TABLEcounter('TableQA/final/final.tables.json')
 # print('#columns in a table:', columnCountDict)
+print(baseline("TableQA/final/final_complete.json"))
 print('DONE')
