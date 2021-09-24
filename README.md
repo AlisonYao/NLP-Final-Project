@@ -16,7 +16,7 @@ Paper detailing the dataset: https://arxiv.org/abs/2006.06434
 
 Data is used for a compitition: https://tianchi.aliyun.com/competition/entrance/231716/introduction
 
-## Project Report & Codes
+## Project Implementation
 
 Please check `NLP_final_paper.pdf`.
 
@@ -35,6 +35,10 @@ Variant 3 – SB_WHERE: `all_task_only_where_final.ipynb`
 Variant 1 – DT_multitask: `double_tower_single_task.ipynb`
 
 Variant 2 – DT_SELECT & Variant 3 – DT_WHERE: `double_tower_multi_task.ipynb`
+
+### Trained models
+
+Baiduyun Link: https://pan.baidu.com/s/12Qj_9CC5PvyXcgz_r_2nWw Password: 4imj
 
 ## References
 
