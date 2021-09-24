@@ -38,7 +38,9 @@ Variant 2 – DT_SELECT & Variant 3 – DT_WHERE: `double_tower_multi_task.ipynb
 
 ### Trained models
 
-Baiduyun Link: https://pan.baidu.com/s/12Qj_9CC5PvyXcgz_r_2nWw Password: 4imj
+We used Google Colab GPU to speed things up. Please check the following link for the trained models.
+
+Baidu Cloud Link: https://pan.baidu.com/s/12Qj_9CC5PvyXcgz_r_2nWw Password: 4imj
 
 ## References
 
